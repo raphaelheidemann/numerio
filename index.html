@@ -3,673 +3,644 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Numério — Finanças que fazem sentido para o seu restaurante</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Numério — Financeiro descomplicado para quem toca o negócio</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d1f2d;
+  --navy2:#142638;
+  --teal:#0a7c65;
+  --teal2:#0d9e82;
+  --teal-pale:#e6f5f1;
+  --cream:#f7f4ef;
+  --cream2:#ede9e2;
+  --ink:#1a1a1a;
+  --muted:#6b7280;
+  --border:#e0dbd2;
+  --white:#fff;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--ink);-webkit-font-smoothing:antialiased}
 
-:root {
-  --navy: #0f2233;
-  --navy-mid: #1a3448;
-  --teal: #0d7c66;
-  --teal-light: #15a085;
-  --teal-pale: #e8f5f2;
-  --sand: #f5f0e8;
-  --sand-dark: #e8e0d0;
-  --ink: #1a1a1a;
-  --muted: #6b7280;
-  --border: #e2ddd4;
-  --white: #ffffff;
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;height:68px;
+  background:rgba(255,255,255,0.97);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
+  transition:box-shadow .3s;
+}
+nav.scrolled{box-shadow:0 2px 32px rgba(13,31,45,.07)}
+.logo{font-family:'Fraunces',serif;font-size:1.65rem;color:var(--navy);letter-spacing:-.5px;text-decoration:none}
+.logo b{color:var(--teal)}
+.nav-r{display:flex;align-items:center;gap:2rem}
+.nav-r a{font-size:.875rem;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-r a:hover{color:var(--navy)}
+.nav-btn{
+  background:var(--navy);color:var(--white)!important;
+  padding:.55rem 1.4rem;border-radius:5px;
+  font-weight:500!important;font-size:.875rem;
+  transition:background .2s!important;
+}
+.nav-btn:hover{background:var(--teal)!important}
+
+/* ── HERO ── */
+.hero{
+  margin-top:68px;
+  min-height:92vh;
+  background:var(--navy);
+  display:grid;grid-template-columns:1fr 1fr;
+  overflow:hidden;position:relative;
+}
+.hero::before{
+  content:'';position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 60% 80% at 110% 50%,rgba(10,124,101,.18) 0%,transparent 70%);
+  pointer-events:none;
+}
+/* decorative grid lines */
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+}
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:5rem 3rem 5rem 5vw;
+  position:relative;z-index:2;
+}
+.badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(10,124,101,.15);
+  border:1px solid rgba(10,124,101,.35);
+  color:#3ecfab;
+  font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:.35rem .9rem;border-radius:100px;
+  margin-bottom:2rem;width:fit-content;
+}
+.badge-dot{width:6px;height:6px;background:#3ecfab;border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.hero-h1{
+  font-family:'Fraunces',serif;
+  font-size:clamp(2.6rem,4vw,3.8rem);
+  color:var(--white);
+  line-height:1.08;letter-spacing:-1.5px;
+  margin-bottom:1.5rem;
+}
+.hero-h1 em{font-style:italic;color:#3ecfab}
+
+.hero-sub{
+  font-size:1.05rem;font-weight:300;
+  color:rgba(255,255,255,.6);
+  line-height:1.75;max-width:460px;
+  margin-bottom:2.5rem;
 }
 
-html { scroll-behavior: smooth; }
+.hero-questions{
+  display:flex;flex-direction:column;gap:.75rem;
+  margin-bottom:3rem;
+}
+.hq{
+  display:flex;align-items:flex-start;gap:.75rem;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;
+  padding:.9rem 1.1rem;
+  font-size:.875rem;color:rgba(255,255,255,.7);
+  line-height:1.5;
+}
+.hq-icon{font-size:1rem;flex-shrink:0;margin-top:.05rem}
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--white);
-  color: var(--ink);
-  -webkit-font-smoothing: antialiased;
+.hero-divider{height:1px;background:rgba(255,255,255,.1);margin-bottom:2rem}
+
+.hero-stats{display:flex;gap:2.5rem}
+.stat{display:flex;flex-direction:column;gap:.25rem}
+.stat-n{
+  font-family:'Fraunces',serif;
+  font-size:2rem;color:var(--white);line-height:1;
+}
+.stat-l{font-size:.75rem;color:rgba(255,255,255,.4);font-weight:400;letter-spacing:.03em}
+
+/* HERO RIGHT — FORM */
+.hero-right{
+  background:var(--cream);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:5rem 5vw 5rem 3.5rem;
+  position:relative;z-index:2;
+}
+.form-wrap{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:2.5rem;
+  box-shadow:0 16px 48px rgba(13,31,45,.08);
+}
+.form-title{
+  font-family:'Fraunces',serif;
+  font-size:1.6rem;color:var(--navy);
+  letter-spacing:-.3px;margin-bottom:.4rem;
+}
+.form-sub{font-size:.875rem;color:var(--muted);margin-bottom:1.75rem;line-height:1.55}
+
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.f-group{margin-bottom:1rem}
+.f-group label{
+  display:block;font-size:.775rem;font-weight:600;
+  color:var(--navy);margin-bottom:.4rem;letter-spacing:.02em;
+}
+.f-group input{
+  width:100%;padding:.75rem 1rem;
+  border:1.5px solid var(--border);border-radius:6px;
+  font-size:.9rem;font-family:'Inter',sans-serif;
+  color:var(--ink);background:var(--white);
+  outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.f-group input::placeholder{color:#b8b0a5}
+.f-group input:focus{
+  border-color:var(--teal);
+  box-shadow:0 0 0 3px rgba(10,124,101,.09);
+}
+.req{color:var(--teal)}
+
+.btn-sub{
+  width:100%;margin-top:.5rem;
+  padding:.9rem;
+  background:var(--teal);color:var(--white);
+  border:none;border-radius:6px;
+  font-family:'Inter',sans-serif;font-size:.9rem;font-weight:600;
+  cursor:pointer;letter-spacing:.02em;
+  transition:background .2s,transform .1s,box-shadow .2s;
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+}
+.btn-sub:hover{background:var(--teal2);box-shadow:0 6px 20px rgba(10,124,101,.25)}
+.btn-sub:active{transform:scale(.99)}
+
+.form-note{font-size:.75rem;color:var(--muted);text-align:center;margin-top:.9rem;line-height:1.5}
+
+.toast{
+  display:none;margin-top:1rem;
+  background:var(--teal-pale);border:1px solid var(--teal);
+  color:var(--teal);padding:.75rem 1rem;border-radius:6px;
+  font-size:.85rem;font-weight:500;
+}
+.toast.show{display:block}
+
+/* ── PAIN ── */
+.pain{
+  background:var(--cream);
+  padding:6rem 5vw;
+}
+.pain-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+}
+.eyebrow{
+  font-size:.72rem;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--teal);margin-bottom:1rem;
+}
+.section-h{
+  font-family:'Fraunces',serif;
+  font-size:clamp(2rem,3vw,2.8rem);
+  color:var(--navy);line-height:1.15;letter-spacing:-.5px;
+  margin-bottom:1.25rem;
+}
+.section-p{
+  font-size:.95rem;color:var(--muted);
+  line-height:1.75;margin-bottom:2rem;
+}
+.pain-list{display:flex;flex-direction:column;gap:.75rem}
+.pain-item{
+  display:flex;align-items:flex-start;gap:.85rem;
+  padding:1rem 1.25rem;
+  background:var(--white);
+  border:1px solid var(--border);border-radius:8px;
+  transition:border-color .2s,box-shadow .2s;
+}
+.pain-item:hover{
+  border-color:var(--teal);
+  box-shadow:0 4px 16px rgba(10,124,101,.08);
+}
+.pain-icon{font-size:1.25rem;flex-shrink:0;margin-top:.1rem}
+.pain-text{font-size:.88rem;color:var(--ink);line-height:1.6}
+.pain-text strong{color:var(--navy);font-weight:600}
+
+/* ── NICHES ── */
+.niches{
+  background:var(--white);
+  padding:6rem 5vw;
+  border-top:1px solid var(--border);
+}
+.niches-inner{max-width:1100px;margin:0 auto}
+.niches-top{text-align:center;margin-bottom:4rem}
+.niches-top .section-h{margin-bottom:.75rem}
+.niches-top .section-p{max-width:500px;margin:0 auto}
+
+.niches-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:12px;overflow:hidden;
+}
+.niche{
+  background:var(--white);
+  padding:2rem 1.5rem;
+  transition:background .2s;
+  cursor:default;
+}
+.niche:hover{background:var(--cream)}
+.niche-icon{font-size:2rem;margin-bottom:1rem}
+.niche-name{font-size:.95rem;font-weight:600;color:var(--navy);margin-bottom:.4rem}
+.niche-desc{font-size:.8rem;color:var(--muted);line-height:1.6}
+
+/* ── BENEFITS ── */
+.benefits{
+  background:var(--navy);
+  padding:6rem 5vw;
+}
+.benefits-inner{max-width:1100px;margin:0 auto}
+.benefits-top{margin-bottom:4rem}
+.benefits-top .eyebrow{color:#3ecfab}
+.benefits-top .section-h{color:var(--white);max-width:500px}
+
+.benefits-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+}
+.benefit{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;
+  padding:2rem;
+  transition:background .2s,border-color .2s;
+}
+.benefit:hover{
+  background:rgba(10,124,101,.12);
+  border-color:rgba(10,124,101,.3);
+}
+.b-num{
+  font-family:'Fraunces',serif;
+  font-size:2.5rem;color:rgba(255,255,255,.08);
+  line-height:1;margin-bottom:1.25rem;
+}
+.b-title{font-size:.95rem;font-weight:600;color:var(--white);margin-bottom:.6rem}
+.b-text{font-size:.83rem;color:rgba(255,255,255,.5);line-height:1.7}
+
+/* ── ABOUT ── */
+.about{
+  background:var(--cream);
+  padding:6rem 5vw;
+  border-top:1px solid var(--border);
+}
+.about-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1.1fr 1fr;gap:6rem;align-items:center;
+}
+.about-quote{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:1.4rem;color:var(--navy);
+  line-height:1.5;letter-spacing:-.3px;
+  border-left:3px solid var(--teal);
+  padding-left:1.5rem;
+  margin:2rem 0;
+}
+.about-card{
+  background:var(--navy);
+  border-radius:12px;padding:2.5rem;
+  box-shadow:0 20px 60px rgba(13,31,45,.15);
+}
+.ac-label{
+  font-size:.72rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.3);
+  margin-bottom:1.5rem;
+}
+.ac-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.9rem 0;border-bottom:1px solid rgba(255,255,255,.07);
+}
+.ac-row:last-child{border-bottom:none}
+.ac-key{font-size:.85rem;color:rgba(255,255,255,.5)}
+.ac-val{
+  font-family:'Fraunces',serif;font-size:1rem;
+  color:#3ecfab;text-align:right;
 }
 
-/* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1.25rem 4rem;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  transition: box-shadow 0.3s;
+/* ── CTA ── */
+.cta-section{
+  background:var(--teal);
+  padding:5rem 5vw;text-align:center;
 }
-
-nav.scrolled { box-shadow: 0 2px 24px rgba(15,34,51,0.08); }
-
-.nav-logo {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.75rem;
-  color: var(--navy);
-  letter-spacing: -0.5px;
+.cta-h{
+  font-family:'Fraunces',serif;
+  font-size:clamp(2rem,3.5vw,3rem);
+  color:var(--white);letter-spacing:-.5px;margin-bottom:1rem;
 }
-
-.nav-logo span { color: var(--teal); }
-
-.nav-links { display: flex; gap: 2rem; align-items: center; }
-
-.nav-links a {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--muted);
-  text-decoration: none;
-  letter-spacing: 0.01em;
-  transition: color 0.2s;
+.cta-p{font-size:1rem;color:rgba(255,255,255,.8);margin-bottom:2.5rem;line-height:1.7}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--white);color:var(--teal);
+  padding:.9rem 2.2rem;border-radius:6px;
+  font-weight:600;font-size:.95rem;
+  text-decoration:none;
+  transition:transform .2s,box-shadow .2s;
 }
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
 
-.nav-links a:hover { color: var(--navy); }
-
-.nav-cta {
-  background: var(--navy) !important;
-  color: var(--white) !important;
-  padding: 0.6rem 1.4rem;
-  border-radius: 4px;
-  font-weight: 500 !important;
-  transition: background 0.2s !important;
+/* ── FOOTER ── */
+footer{
+  background:var(--navy);
+  padding:2rem 5vw;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,.06);
 }
-
-.nav-cta:hover { background: var(--teal) !important; }
-
-/* HERO */
-.hero {
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding-top: 72px;
-}
-
-.hero-left {
-  background: var(--navy);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 6rem 4rem 6rem 6rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-left::before {
-  content: '';
-  position: absolute;
-  top: -100px; right: -100px;
-  width: 400px; height: 400px;
-  background: var(--teal);
-  opacity: 0.06;
-  border-radius: 50%;
-}
-
-.hero-left::after {
-  content: '';
-  position: absolute;
-  bottom: -60px; left: -60px;
-  width: 300px; height: 300px;
-  background: var(--teal);
-  opacity: 0.04;
-  border-radius: 50%;
-}
-
-.hero-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(13,124,102,0.15);
-  border: 1px solid rgba(13,124,102,0.3);
-  color: var(--teal-light);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.4rem 1rem;
-  border-radius: 100px;
-  margin-bottom: 2rem;
-  width: fit-content;
-}
-
-.hero-dot {
-  width: 6px; height: 6px;
-  background: var(--teal-light);
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
-}
-
-.hero-h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 3.4rem;
-  color: var(--white);
-  line-height: 1.1;
-  letter-spacing: -1px;
-  margin-bottom: 1.5rem;
-}
-
-.hero-h1 em {
-  font-style: italic;
-  color: var(--teal-light);
-}
-
-.hero-sub {
-  font-size: 1.1rem;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.7;
-  max-width: 400px;
-  margin-bottom: 2.5rem;
-  font-weight: 300;
-}
-
-.hero-stats {
-  display: flex;
-  gap: 2.5rem;
-  margin-top: 3rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.stat-val {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2rem;
-  color: var(--white);
-  display: block;
-  line-height: 1;
-  margin-bottom: 0.25rem;
-}
-
-.stat-label {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.45);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-}
-
-/* HERO RIGHT - FORM */
-.hero-right {
-  background: var(--sand);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 5rem 5rem 5rem 4rem;
-}
-
-.form-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 2.5rem;
-  box-shadow: 0 8px 40px rgba(15,34,51,0.06);
-}
-
-.form-card-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.6rem;
-  color: var(--navy);
-  margin-bottom: 0.4rem;
-  letter-spacing: -0.3px;
-}
-
-.form-card-sub {
-  font-size: 0.9rem;
-  color: var(--muted);
-  margin-bottom: 1.75rem;
-  line-height: 1.5;
-}
-
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-.field { margin-bottom: 1rem; }
-
-.field label {
-  display: block;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--navy);
-  margin-bottom: 0.4rem;
-  letter-spacing: 0.02em;
-}
-
-.field input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1.5px solid var(--border);
-  border-radius: 6px;
-  font-size: 0.92rem;
-  font-family: 'DM Sans', sans-serif;
-  color: var(--ink);
-  background: var(--white);
-  transition: border-color 0.2s, box-shadow 0.2s;
-  outline: none;
-}
-
-.field input::placeholder { color: #b0a99e; }
-
-.field input:focus {
-  border-color: var(--teal);
-  box-shadow: 0 0 0 3px rgba(13,124,102,0.08);
-}
-
-.req { color: var(--teal); }
-
-.btn-submit {
-  width: 100%;
-  padding: 0.9rem;
-  background: var(--teal);
-  color: var(--white);
-  border: none;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  font-family: 'DM Sans', sans-serif;
-  cursor: pointer;
-  margin-top: 0.5rem;
-  letter-spacing: 0.02em;
-  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
-}
-
-.btn-submit:hover {
-  background: var(--teal-light);
-  box-shadow: 0 4px 16px rgba(13,124,102,0.25);
-}
-
-.btn-submit:active { transform: scale(0.99); }
-
-.form-note {
-  font-size: 0.78rem;
-  color: var(--muted);
-  text-align: center;
-  margin-top: 1rem;
-  line-height: 1.5;
-}
-
-.success-toast {
-  display: none;
-  margin-top: 1rem;
-  background: var(--teal-pale);
-  border: 1px solid var(--teal);
-  color: var(--teal);
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  font-size: 0.88rem;
-  font-weight: 500;
-}
-
-.success-toast.show { display: block; }
-
-/* BENEFITS */
-.benefits {
-  padding: 6rem 6rem;
-  background: var(--white);
-}
-
-.section-eyebrow {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--teal);
-  margin-bottom: 1rem;
-}
-
-.section-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.8rem;
-  color: var(--navy);
-  line-height: 1.15;
-  letter-spacing: -0.5px;
-  margin-bottom: 1rem;
-  max-width: 520px;
-}
-
-.section-sub {
-  font-size: 1rem;
-  color: var(--muted);
-  line-height: 1.7;
-  max-width: 480px;
-  margin-bottom: 4rem;
-}
-
-.benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.benefit-item {
-  padding: 2.5rem 2rem;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  transition: background 0.2s;
-  position: relative;
-}
-
-.benefit-item:hover { background: var(--sand); }
-.benefit-item:nth-child(3n) { border-right: none; }
-.benefit-item:nth-child(4), .benefit-item:nth-child(5), .benefit-item:nth-child(6) { border-bottom: none; }
-
-.benefit-num {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.5rem;
-  color: var(--sand-dark);
-  line-height: 1;
-  margin-bottom: 1rem;
-}
-
-.benefit-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--navy);
-  margin-bottom: 0.6rem;
-}
-
-.benefit-text {
-  font-size: 0.88rem;
-  color: var(--muted);
-  line-height: 1.65;
-}
-
-/* ABOUT */
-.about {
-  background: var(--navy);
-  padding: 6rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  align-items: center;
-}
-
-.about-left .section-eyebrow { color: var(--teal-light); }
-
-.about-left .section-title { color: var(--white); max-width: none; }
-
-.about-text {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-  font-weight: 300;
-}
-
-.about-right {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px;
-  padding: 2.5rem;
-}
-
-.about-card-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  margin-bottom: 1.5rem;
-}
-
-.about-metric {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-
-.about-metric:last-child { border-bottom: none; }
-
-.am-label {
-  font-size: 0.88rem;
-  color: rgba(255,255,255,0.55);
-}
-
-.am-val {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.1rem;
-  color: var(--teal-light);
-}
-
-/* FOOTER */
-footer {
-  background: var(--ink);
-  color: rgba(255,255,255,0.4);
-  padding: 2rem 6rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.83rem;
-}
-
-footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
-footer a:hover { color: var(--teal-light); }
-
-.footer-logo {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.2rem;
-  color: rgba(255,255,255,0.7);
-}
-
-/* MOBILE */
-@media (max-width: 900px) {
-  nav { padding: 1rem 1.5rem; }
-  .nav-links { display: none; }
-
-  .hero { grid-template-columns: 1fr; min-height: auto; }
-
-  .hero-left {
-    padding: 4rem 1.75rem;
-  }
-
-  .hero-h1 { font-size: 2.4rem; }
-
-  .hero-right { padding: 2.5rem 1.75rem; }
-
-  .benefits { padding: 4rem 1.75rem; }
-
-  .benefits-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .benefit-item:nth-child(3n) { border-right: none; }
-  .benefit-item { border-right: none !important; }
-  .benefit-item:last-child { border-bottom: none; }
-  .benefit-item:nth-child(4), .benefit-item:nth-child(5) { border-bottom: 1px solid var(--border); }
-
-  .about {
-    grid-template-columns: 1fr;
-    padding: 4rem 1.75rem;
-    gap: 3rem;
-  }
-
-  .section-title { font-size: 2.2rem; }
-
-  footer { padding: 1.5rem 1.75rem; flex-direction: column; gap: 0.5rem; text-align: center; }
-
-  .form-row { grid-template-columns: 1fr; }
-
-  .hero-stats { gap: 1.5rem; }
+.footer-logo{font-family:'Fraunces',serif;font-size:1.3rem;color:rgba(255,255,255,.7)}
+.footer-logo b{color:var(--teal2)}
+footer p{font-size:.8rem;color:rgba(255,255,255,.3)}
+footer a{color:rgba(255,255,255,.3);text-decoration:none;font-size:.8rem;transition:color .2s}
+footer a:hover{color:#3ecfab}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  nav{padding:0 1.25rem}
+  .nav-r a:not(.nav-btn){display:none}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{padding:3.5rem 1.25rem}
+  .hero-right{padding:2.5rem 1.25rem}
+  .pain-inner,.about-inner{grid-template-columns:1fr;gap:3rem}
+  .niches-grid{grid-template-columns:1fr 1fr}
+  .benefits-grid{grid-template-columns:1fr}
+  .hero-stats{gap:1.5rem}
+  footer{flex-direction:column;gap:.75rem;text-align:center}
+  .f-row{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<nav id="navbar">
-  <div class="nav-logo">Numé<span>rio</span></div>
-  <div class="nav-links">
-    <a href="#beneficios">Benefícios</a>
+<!-- NAV -->
+<nav id="nav">
+  <a class="logo" href="#">Numé<b>rio</b></a>
+  <div class="nav-r">
+    <a href="#dores">Por que Numério</a>
     <a href="#sobre">Sobre</a>
-    <a href="#waitlist" class="nav-cta">Entrar na lista</a>
+    <a href="#waitlist" class="nav-btn">Lista de espera</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-tag">
-      <div class="hero-dot"></div>
-      Em breve
+    <div class="badge"><div class="badge-dot"></div>Em breve</div>
+
+    <h1 class="hero-h1">
+      Financeiro <em>descomplicado</em><br>para quem toca o negócio
+    </h1>
+    <p class="hero-sub">
+      Cursos, templates e ferramentas para donos de negócio entenderem seus números — sem precisar de contador, sem jargão contábil.
+    </p>
+
+    <div class="hero-questions">
+      <div class="hq">
+        <span class="hq-icon">🤔</span>
+        <span>"Você já se perguntou quanto o seu mix de produtos está te impactando no resultado?"</span>
+      </div>
+      <div class="hq">
+        <span class="hq-icon">📉</span>
+        <span>"Você sabe se está lucrando ou só movimentando dinheiro?"</span>
+      </div>
+      <div class="hq">
+        <span class="hq-icon">💸</span>
+        <span>"Você sabe qual produto te dá mais margem — ou só acha que sabe?"</span>
+      </div>
     </div>
-    <h1 class="hero-h1">Finanças que fazem <em>sentido</em> pro seu restaurante</h1>
-    <p class="hero-sub">Pare de adivinhar se seu negócio lucra. Com Numério, você entende seus números em minutos — sem precisar de contador.</p>
+
+    <div class="hero-divider"></div>
 
     <div class="hero-stats">
-      <div>
-        <span class="stat-val">5min</span>
-        <span class="stat-label">para seu primeiro DRE</span>
+      <div class="stat">
+        <span class="stat-n">0</span>
+        <span class="stat-l">jargões contábeis</span>
       </div>
-      <div>
-        <span class="stat-val">0</span>
-        <span class="stat-label">jargões financeiros</span>
+      <div class="stat">
+        <span class="stat-n">100%</span>
+        <span class="stat-l">orientado a resultado</span>
       </div>
-      <div>
-        <span class="stat-val">100%</span>
-        <span class="stat-label">feito para food service</span>
+      <div class="stat">
+        <span class="stat-n">+8 anos</span>
+        <span class="stat-l">em FP&A e controladoria</span>
       </div>
     </div>
   </div>
 
   <div class="hero-right" id="waitlist">
-    <div class="form-card">
-      <div class="form-card-title">Entre na lista de espera</div>
-      <div class="form-card-sub">Seja um dos primeiros a usar e garanta desconto especial de fundador.</div>
+    <div class="form-wrap">
+      <div class="form-title">Entre na lista de espera</div>
+      <div class="form-sub">Seja um dos primeiros a acessar e garanta o desconto especial de fundador.</div>
 
       <form id="mc-form" method="post" action="https://numerio.us8.list-manage.com/subscribe/post?u=6791be3222df3ef90fd8a404f&id=acd37e77fe&f_id=0028c4e1f0" target="_blank">
 
-        <div class="field">
+        <div class="f-group">
           <label for="mce-EMAIL">E-mail <span class="req">*</span></label>
           <input type="email" name="EMAIL" id="mce-EMAIL" required placeholder="voce@email.com">
         </div>
 
-        <div class="form-row">
-          <div class="field">
+        <div class="f-row">
+          <div class="f-group">
             <label for="mce-FNAME">Nome</label>
             <input type="text" name="FNAME" id="mce-FNAME" placeholder="Seu nome">
           </div>
-          <div class="field">
+          <div class="f-group">
             <label for="mce-PHONE">Telefone</label>
-            <input type="text" name="PHONE" id="mce-PHONE" placeholder="(47) 9XXXX-XXXX">
+            <input type="text" name="PHONE" id="mce-PHONE" placeholder="(XX) 9XXXX-XXXX">
           </div>
         </div>
 
-        <div class="field">
-          <label for="mce-COMPANY">Nome do seu negócio</label>
-          <input type="text" name="COMPANY" id="mce-COMPANY" placeholder="Restaurante ou empresa">
+        <div class="f-group">
+          <label for="mce-COMPANY">Seu negócio</label>
+          <input type="text" name="COMPANY" id="mce-COMPANY" placeholder="Nome da empresa ou segmento">
         </div>
 
-        <!-- Mailchimp anti-bot -->
-        <div style="position:absolute;left:-5000px;" aria-hidden="true">
+        <div style="position:absolute;left:-5000px" aria-hidden="true">
           <input type="text" name="b_6791be3222df3ef90fd8a404f_acd37e77fe" tabindex="-1" value="">
         </div>
 
-        <button type="submit" class="btn-submit">Quero entrar na lista →</button>
-        <div class="success-toast" id="toast">✓ Inscrição enviada! Verifique seu e-mail para confirmar.</div>
-        <p class="form-note">Sem spam. Você pode cancelar a qualquer momento.</p>
+        <button type="submit" class="btn-sub">
+          Quero entrar na lista <span>→</span>
+        </button>
+        <div class="toast" id="toast">✓ Inscrição enviada! Confirme pelo seu e-mail.</div>
+        <p class="form-note">Sem spam. Cancele quando quiser.</p>
       </form>
     </div>
   </div>
 </section>
 
-<!-- BENEFITS -->
-<section class="benefits" id="beneficios">
-  <div class="section-eyebrow">Por que Numério</div>
-  <h2 class="section-title">Tudo que você precisa para parar de operar no escuro</h2>
-  <p class="section-sub">Desenvolvido por quem entende finanças de food service de verdade — não por quem nunca entrou em uma cozinha.</p>
+<!-- PAIN -->
+<section class="pain" id="dores">
+  <div class="pain-inner">
+    <div>
+      <div class="eyebrow">O problema real</div>
+      <h2 class="section-h">A maioria dos donos de negócio opera no escuro</h2>
+      <p class="section-p">Não falta esforço. Falta clareza. Sem saber seus números de verdade, cada decisão é um chute.</p>
+      <a href="#waitlist" style="display:inline-flex;align-items:center;gap:.5rem;background:var(--navy);color:#fff;padding:.8rem 1.8rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:.875rem;transition:background .2s" onmouseover="this.style.background='var(--teal)'" onmouseout="this.style.background='var(--navy)'">Quero resolver isso →</a>
+    </div>
+    <div class="pain-list">
+      <div class="pain-item">
+        <span class="pain-icon">🍽️</span>
+        <div class="pain-text"><strong>Restaurante com salão cheio, caixa vazio.</strong> Fatura bem, mas não sabe onde o dinheiro vai.</div>
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">💈</span>
+        <div class="pain-text"><strong>Salão que cresce em atendimentos mas não em lucro.</strong> Serviços mal precificados corroem a margem.</div>
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">🏪</span>
+        <div class="pain-text"><strong>Loja que vende bastante mas não sobra nada.</strong> Estoque parado e custo fixo alto comem o resultado.</div>
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">🩺</span>
+        <div class="pain-text"><strong>Clínica com agenda cheia e DRE no vermelho.</strong> Convênios mal negociados e despesas fora de controle.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <div class="benefits-grid">
-    <div class="benefit-item">
-      <div class="benefit-num">01</div>
-      <div class="benefit-title">DRE automático</div>
-      <p class="benefit-text">Lance receitas e despesas uma vez. Seu resultado financeiro aparece automaticamente, sem fórmulas complicadas.</p>
+<!-- NICHES -->
+<section class="niches">
+  <div class="niches-inner">
+    <div class="niches-top">
+      <div class="eyebrow">Para quem é</div>
+      <h2 class="section-h">Para qualquer dono de negócio que quer clareza financeira</h2>
+      <p class="section-p">Não importa o segmento. Se você tem CNPJ e quer entender seus números, Numério é para você.</p>
     </div>
-    <div class="benefit-item">
-      <div class="benefit-num">02</div>
-      <div class="benefit-title">CMV sob controle</div>
-      <p class="benefit-text">Calcule seu custo de mercadoria vendida em tempo real. Saiba exatamente qual prato te dá lucro e qual te prejudica.</p>
+    <div class="niches-grid">
+      <div class="niche">
+        <div class="niche-icon">🍕</div>
+        <div class="niche-name">Food Service</div>
+        <div class="niche-desc">Restaurantes, lanchonetes, dark kitchens, padarias e distribuidoras.</div>
+      </div>
+      <div class="niche">
+        <div class="niche-icon">💇</div>
+        <div class="niche-name">Serviços</div>
+        <div class="niche-desc">Salões, clínicas, oficinas, prestadores e profissionais autônomos.</div>
+      </div>
+      <div class="niche">
+        <div class="niche-icon">🛍️</div>
+        <div class="niche-name">Comércio</div>
+        <div class="niche-desc">Lojas, mercados, distribuidores e negócios com estoque.</div>
+      </div>
+      <div class="niche">
+        <div class="niche-icon">🏗️</div>
+        <div class="niche-name">Empresas familiares</div>
+        <div class="niche-desc">Negócios de segunda geração que precisam profissionalizar o financeiro.</div>
+      </div>
     </div>
-    <div class="benefit-item">
-      <div class="benefit-num">03</div>
-      <div class="benefit-title">Fluxo de caixa claro</div>
-      <p class="benefit-text">Veja entradas e saídas projetadas. Nunca mais ser pego de surpresa com contas a pagar sem dinheiro no caixa.</p>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits">
+  <div class="benefits-inner">
+    <div class="benefits-top">
+      <div class="eyebrow">O que você aprende</div>
+      <h2 class="section-h">Do caos financeiro à clareza total — passo a passo</h2>
     </div>
-    <div class="benefit-item">
-      <div class="benefit-num">04</div>
-      <div class="benefit-title">Precificação inteligente</div>
-      <p class="benefit-text">Descubra o preço mínimo de cada prato para não vender no prejuízo. Simples, direto e baseado nos seus custos reais.</p>
-    </div>
-    <div class="benefit-item">
-      <div class="benefit-num">05</div>
-      <div class="benefit-title">Relatórios em segundos</div>
-      <p class="benefit-text">Tire um relatório gerencial em PDF para mostrar para sócios, banco ou contador. Sem precisar contratar ninguém.</p>
-    </div>
-    <div class="benefit-item">
-      <div class="benefit-num">06</div>
-      <div class="benefit-title">Linguagem humana</div>
-      <p class="benefit-text">Sem jargões contábeis. Cada número vem com uma explicação em português claro para você tomar a decisão certa.</p>
+    <div class="benefits-grid">
+      <div class="benefit">
+        <div class="b-num">01</div>
+        <div class="b-title">DRE que você entende</div>
+        <p class="b-text">Aprenda a montar e interpretar seu resultado sem precisar de formação em contabilidade.</p>
+      </div>
+      <div class="benefit">
+        <div class="b-num">02</div>
+        <div class="b-title">Precificação sem chute</div>
+        <p class="b-text">Calcule o preço mínimo de cada produto ou serviço para não vender no prejuízo.</p>
+      </div>
+      <div class="benefit">
+        <div class="b-num">03</div>
+        <div class="b-title">Fluxo de caixa previsível</div>
+        <p class="b-text">Saiba com antecedência quando o caixa vai apertar e como agir antes que seja tarde.</p>
+      </div>
+      <div class="benefit">
+        <div class="b-num">04</div>
+        <div class="b-title">Análise de mix e margem</div>
+        <p class="b-text">Descubra quais produtos ou serviços realmente te dão lucro — e quais estão te prejudicando.</p>
+      </div>
+      <div class="benefit">
+        <div class="b-num">05</div>
+        <div class="b-title">Templates prontos para usar</div>
+        <p class="b-text">Planilhas e ferramentas que você adapta para o seu negócio em minutos, não dias.</p>
+      </div>
+      <div class="benefit">
+        <div class="b-num">06</div>
+        <div class="b-title">Decisões com dados reais</div>
+        <p class="b-text">Contratar, investir, cortar custos — aprenda a decidir com base em números, não intuição.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section class="about" id="sobre">
-  <div class="about-left">
-    <div class="section-eyebrow">Quem está por trás</div>
-    <h2 class="section-title">Criado por quem vive finanças de food service todo dia</h2>
-    <p class="about-text">Sou Raphael, gerente de finanças de uma das maiores distribuidoras de alimentos do Brasil. Nos últimos anos, vi de perto como donos de restaurante perdem dinheiro não por falta de talento, mas por falta de visibilidade financeira.</p>
-    <p class="about-text">Numério nasceu dessa observação: uma ferramenta honesta, acessível e feita especificamente para quem trabalha com comida — não para quem trabalha em escritório contábil.</p>
-  </div>
-
-  <div class="about-right">
-    <div class="about-card-label">O que Numério resolve</div>
-    <div class="about-metric">
-      <span class="am-label">Entender se está lucrando</span>
-      <span class="am-val">DRE simples</span>
+  <div class="about-inner">
+    <div>
+      <div class="eyebrow">Quem está por trás</div>
+      <h2 class="section-h">Criado por quem entende finanças de negócio de verdade</h2>
+      <div class="about-quote">"Vi de perto como donos de negócio perdem dinheiro não por falta de esforço, mas por falta de visibilidade dos próprios números."</div>
+      <p class="section-p">Sou Raphael, gerente de finanças com mais de 8 anos em FP&A e Controladoria no setor de distribuição de alimentos. Numério nasceu da vontade de levar esse conhecimento para quem mais precisa — o dono de negócio que toca tudo sozinho.</p>
     </div>
-    <div class="about-metric">
-      <span class="am-label">Controlar custo de ingredientes</span>
-      <span class="am-val">CMV automático</span>
-    </div>
-    <div class="about-metric">
-      <span class="am-label">Saber o preço certo dos pratos</span>
-      <span class="am-val">Precificação</span>
-    </div>
-    <div class="about-metric">
-      <span class="am-label">Prever o caixa do próximo mês</span>
-      <span class="am-val">Fluxo projetado</span>
-    </div>
-    <div class="about-metric">
-      <span class="am-label">Apresentar resultado para sócios</span>
-      <span class="am-val">Relatório PDF</span>
+    <div class="about-card">
+      <div class="ac-label">O que você vai dominar</div>
+      <div class="ac-row">
+        <span class="ac-key">Resultado financeiro real</span>
+        <span class="ac-val">DRE simplificado</span>
+      </div>
+      <div class="ac-row">
+        <span class="ac-key">Custo de cada produto</span>
+        <span class="ac-val">CMV e margem</span>
+      </div>
+      <div class="ac-row">
+        <span class="ac-key">Preço certo de venda</span>
+        <span class="ac-val">Precificação</span>
+      </div>
+      <div class="ac-row">
+        <span class="ac-key">Dinheiro no caixa futuro</span>
+        <span class="ac-val">Fluxo projetado</span>
+      </div>
+      <div class="ac-row">
+        <span class="ac-key">Impacto do mix no lucro</span>
+        <span class="ac-val">Análise de portfólio</span>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <h2 class="cta-h">Pronto para entender seu negócio de verdade?</h2>
+  <p class="cta-p">Entre na lista de espera e seja um dos primeiros a acessar Numério com desconto de fundador.</p>
+  <a href="#waitlist" class="cta-btn">Quero entrar na lista →</a>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Numério</div>
-  <div>© 2025 Numério. Todos os direitos reservados.</div>
-  <div><a href="mailto:raphael@numerio.com.br">raphael@numerio.com.br</a></div>
+  <div class="footer-logo">Numé<b>rio</b></div>
+  <p>© 2025 Numério. Todos os direitos reservados.</p>
+  <a href="mailto:raphael@numerio.com.br">raphael@numerio.com.br</a>
 </footer>
 
 <script>
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 20);
-  });
-
-  document.getElementById('mc-form').addEventListener('submit', () => {
-    setTimeout(() => {
-      document.getElementById('toast').classList.add('show');
-    }, 600);
-  });
+document.getElementById('nav').addEventListener('scroll',()=>{},false);
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20);
+});
+document.getElementById('mc-form').addEventListener('submit',()=>{
+  setTimeout(()=>document.getElementById('toast').classList.add('show'),700);
+});
 </script>
 </body>
 </html>
