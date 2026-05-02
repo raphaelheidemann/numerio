@@ -24,22 +24,39 @@ E tem gente que fatura R$15k e fica com R$5k no bolso.
 
 A diferença? Um sabe seus números. O outro não.
 
-Se você não sabe sua resposta exata, a gente precisa conversar.
+Se você não sabe sua resposta exata...
+
+👉 Clica no link da bio e entra na lista de espera.
+
+Você vai aprender a calcular isso de forma simples.
+Sem jargão. Sem Excel assustador.
+
+Só clareza.
 
 #Finanças #Empreendedor #DRE
 ```
 
 ### Roteiro de gravação:
-1. **0-5s:** Você olhando direto pra câmera com expressão séria/questionadora
-   - Fale: "Você sabe quanto você REALMENTE lucrou mês passado?"
-   
-2. **5-10s:** Você segurando uma caneta/apontando para tela (se tiver um gráfico atrás)
-   - Fale: "Porque tem gente que fatura R$30k... mas não sobra nada. E tem gente que fatura R$15k e fica com R$5k no bolso."
-   
-3. **10-20s:** Você de novo direto na câmera, mais próximo (zoom in)
-   - Fale: "A diferença? Um sabe seus números. O outro não."
+Roteiro de gravação (REVISADO):
 
-**Dica:** Varia velocidade — começa lento, termina com urgência.
+0-5s: Você olhando direto pra câmera com expressão séria/questionadora
+
+Fale: "Você sabe quanto você REALMENTE lucrou mês passado?"
+
+
+5-12s: Você segurando uma caneta/apontando
+
+Fale: "Porque tem gente que fatura R$30k... mas não sobra nada. E tem gente que fatura R$15k e fica com R$5k."
+
+
+12-18s: Você de novo direto na câmera, mais próximo (zoom in)
+
+Fale: "A diferença? Um sabe seus números. O outro não."
+
+
+18-20s: Você apontando pro lado (gesto de "vem comigo")
+
+Fale: "Clica no link da bio e entra na lista. Eu vou te ensinar a calcular isso de forma simples."
 
 ---
 
