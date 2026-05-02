@@ -442,27 +442,27 @@ footer a:hover{color:#3ecfab}
       <div class="form-title">Entre na lista de espera</div>
       <div class="form-sub">Seja um dos primeiros a acessar e garanta o desconto especial de fundador.</div>
 
-      <form id="mc-form">
+      <form id="mc-form" action="https://formspree.io/f/xzdozqaq" method="POST">
 
         <div class="f-group">
-          <label for="mce-EMAIL">E-mail <span class="req">*</span></label>
-          <input type="email" name="EMAIL" id="mce-EMAIL" required placeholder="voce@email.com">
+          <label for="email">E-mail <span class="req">*</span></label>
+          <input type="email" name="email" id="email" required placeholder="voce@email.com">
         </div>
 
         <div class="f-row">
           <div class="f-group">
-            <label for="mce-FNAME">Nome</label>
-            <input type="text" name="FNAME" id="mce-FNAME" placeholder="Seu nome">
+            <label for="name">Nome</label>
+            <input type="text" name="name" id="name" placeholder="Seu nome">
           </div>
           <div class="f-group">
-            <label for="mce-PHONE">Telefone</label>
-            <input type="text" name="PHONE" id="mce-PHONE" placeholder="(XX) 9XXXX-XXXX">
+            <label for="phone">Telefone</label>
+            <input type="text" name="phone" id="phone" placeholder="(XX) 9XXXX-XXXX">
           </div>
         </div>
 
         <div class="f-group">
-          <label for="mce-COMPANY">Seu negócio</label>
-          <input type="text" name="COMPANY" id="mce-COMPANY" placeholder="Nome da empresa ou segmento">
+          <label for="company">Seu negócio</label>
+          <input type="text" name="company" id="company" placeholder="Nome da empresa ou segmento">
         </div>
 
         <button type="submit" class="btn-sub" id="submit-btn">
@@ -636,52 +636,18 @@ window.addEventListener('load',()=>{
   const toast=document.getElementById('toast');
   
   form.addEventListener('submit',(e)=>{
-    e.preventDefault();
-    
-    const email=document.getElementById('mce-EMAIL').value;
-    const fname=document.getElementById('mce-FNAME').value;
-    const phone=document.getElementById('mce-PHONE').value;
-    const company=document.getElementById('mce-COMPANY').value;
-    
-    if(!email){alert('Por favor preencha seu e-mail');return}
-    
     btn.disabled=true;
     btn.style.opacity='0.6';
     btn.textContent='Enviando...';
     
-    const params=new URLSearchParams();
-    params.append('u','6791be3222df3ef90fd8a404f');
-    params.append('id','acd37e77fe');
-    params.append('EMAIL',email);
-    params.append('FNAME',fname);
-    params.append('PHONE',phone);
-    params.append('COMPANY',company);
-    params.append('f_id','0028c4e1f0');
-    
-    fetch('https://numerio.us8.list-manage.com/subscribe/post?u=6791be3222df3ef90fd8a404f&id=acd37e77fe&f_id=0028c4e1f0',{
-      method:'POST',
-      mode:'no-cors',
-      body:params
-    })
-    .then(()=>{
+    setTimeout(()=>{
       toast.classList.add('show');
       form.reset();
       btn.disabled=false;
       btn.style.opacity='1';
       btn.innerHTML='Quero entrar na lista <span>→</span>';
-      setTimeout(()=>toast.classList.remove('show'),4000);
-    })
-    .catch(err=>{
-      console.error('Erro:',err);
-      toast.innerHTML='⚠️ Erro ao enviar. Tente novamente.';
-      toast.style.background='#fee';
-      toast.style.borderColor='#f88';
-      toast.style.color='#c33';
-      toast.classList.add('show');
-      btn.disabled=false;
-      btn.style.opacity='1';
-      btn.innerHTML='Quero entrar na lista <span>→</span>';
-    });
+      setTimeout(()=>toast.classList.remove('show'),5000);
+    },800);
   });
 });
 
