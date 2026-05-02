@@ -1,491 +1,675 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Numério — Finanças Descomplicadas para Restaurantes</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Numério — Finanças que fazem sentido para o seu restaurante</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        :root {
-            --primary: #1a3a52;
-            --primary-light: #2d5a7b;
-            --accent: #0d7c66;
-            --accent-light: #4da397;
-            --bg: #f9f9f9;
-            --text-dark: #1a1a1a;
-            --text-light: #666;
-            --border: #e5e5e5;
-        }
+:root {
+  --navy: #0f2233;
+  --navy-mid: #1a3448;
+  --teal: #0d7c66;
+  --teal-light: #15a085;
+  --teal-pale: #e8f5f2;
+  --sand: #f5f0e8;
+  --sand-dark: #e8e0d0;
+  --ink: #1a1a1a;
+  --muted: #6b7280;
+  --border: #e2ddd4;
+  --white: #ffffff;
+}
 
-        html {
-            scroll-behavior: smooth;
-        }
+html { scroll-behavior: smooth; }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
-            background: var(--bg);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
 
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 4rem;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1.2rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+nav.scrolled { box-shadow: 0 2px 24px rgba(15,34,51,0.08); }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            letter-spacing: -0.5px;
-        }
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.75rem;
+  color: var(--navy);
+  letter-spacing: -0.5px;
+}
 
-        .logo-accent {
-            color: var(--accent);
-        }
+.nav-logo span { color: var(--teal); }
 
-        nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
 
-        nav a:hover {
-            color: var(--accent);
-        }
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
 
-        .hero {
-            margin-top: 60px;
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            text-align: center;
-        }
+.nav-links a:hover { color: var(--navy); }
 
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+.nav-cta {
+  background: var(--navy) !important;
+  color: var(--white) !important;
+  padding: 0.6rem 1.4rem;
+  border-radius: 4px;
+  font-weight: 500 !important;
+  transition: background 0.2s !important;
+}
 
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-            letter-spacing: -1px;
-        }
+.nav-cta:hover { background: var(--teal) !important; }
 
-        .hero p {
-            font-size: 1.3rem;
-            opacity: 0.95;
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 72px;
+}
 
-        .cta-primary {
-            background: var(--accent);
-            color: white;
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-block;
-            text-decoration: none;
-        }
+.hero-left {
+  background: var(--navy);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 4rem 6rem 6rem;
+  position: relative;
+  overflow: hidden;
+}
 
-        .cta-primary:hover {
-            background: var(--accent-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(13, 124, 102, 0.3);
-        }
+.hero-left::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: var(--teal);
+  opacity: 0.06;
+  border-radius: 50%;
+}
 
-        .section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
+.hero-left::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: -60px;
+  width: 300px; height: 300px;
+  background: var(--teal);
+  opacity: 0.04;
+  border-radius: 50%;
+}
 
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 3rem;
-            text-align: center;
-            letter-spacing: -0.5px;
-        }
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(13,124,102,0.15);
+  border: 1px solid rgba(13,124,102,0.3);
+  color: var(--teal-light);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  margin-bottom: 2rem;
+  width: fit-content;
+}
 
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
+.hero-dot {
+  width: 6px; height: 6px;
+  background: var(--teal-light);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
 
-        .benefit-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 2rem;
-            transition: all 0.3s;
-        }
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
 
-        .benefit-card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 4px 12px rgba(13, 124, 102, 0.1);
-            transform: translateY(-4px);
-        }
+.hero-h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3.4rem;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 1.5rem;
+}
 
-        .benefit-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
+.hero-h1 em {
+  font-style: italic;
+  color: var(--teal-light);
+}
 
-        .benefit-card h3 {
-            font-size: 1.2rem;
-            color: var(--primary);
-            margin-bottom: 0.75rem;
-        }
+.hero-sub {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
+  max-width: 400px;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
 
-        .benefit-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
+.hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
 
-        .waitlist-section {
-            background: white;
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
+.stat-val {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  color: var(--white);
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
 
-        .waitlist-title {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
+.stat-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.45);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
 
-        .waitlist-desc {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            font-size: 1rem;
-        }
+/* HERO RIGHT - FORM */
+.hero-right {
+  background: var(--sand);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5rem 5rem 5rem 4rem;
+}
 
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
+.form-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 40px rgba(15,34,51,0.06);
+}
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
+.form-card-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.3px;
+}
 
-        .form-group input {
-            width: 100%;
-            padding: 0.85rem;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 0.95rem;
-            transition: border-color 0.2s;
-            font-family: inherit;
-        }
+.form-card-sub {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1.75rem;
+  line-height: 1.5;
+}
 
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(13, 124, 102, 0.1);
-        }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
-        .form-group input::placeholder {
-            color: #999;
-        }
+.field { margin-bottom: 1rem; }
 
-        .form-columns {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
+.field label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.02em;
+}
 
-        .submit-btn {
-            background: var(--accent);
-            color: white;
-            padding: 0.9rem 2rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-            margin-top: 1rem;
-        }
+.field input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.92rem;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  background: var(--white);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
 
-        .submit-btn:hover {
-            background: var(--accent-light);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(13, 124, 102, 0.3);
-        }
+.field input::placeholder { color: #b0a99e; }
 
-        .submit-btn:active {
-            transform: translateY(0);
-        }
+.field input:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(13,124,102,0.08);
+}
 
-        .about-section {
-            background: var(--primary);
-            color: white;
-            padding: 4rem 2rem;
-        }
+.req { color: var(--teal); }
 
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+.btn-submit {
+  width: 100%;
+  padding: 0.9rem;
+  background: var(--teal);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  letter-spacing: 0.02em;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+}
 
-        .about-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.5px;
-        }
+.btn-submit:hover {
+  background: var(--teal-light);
+  box-shadow: 0 4px 16px rgba(13,124,102,0.25);
+}
 
-        .about-section p {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            opacity: 0.95;
-        }
+.btn-submit:active { transform: scale(0.99); }
 
-        .founder-info {
-            background: rgba(255, 255, 255, 0.1);
-            border-left: 3px solid var(--accent);
-            padding: 1.5rem;
-            border-radius: 6px;
-            margin-top: 2rem;
-        }
+.form-note {
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 1rem;
+  line-height: 1.5;
+}
 
-        .founder-info strong {
-            color: var(--accent);
-        }
+.success-toast {
+  display: none;
+  margin-top: 1rem;
+  background: var(--teal-pale);
+  border: 1px solid var(--teal);
+  color: var(--teal);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
 
-        footer {
-            background: var(--text-dark);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-        }
+.success-toast.show { display: block; }
 
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
+/* BENEFITS */
+.benefits {
+  padding: 6rem 6rem;
+  background: var(--white);
+}
 
-        footer a:hover {
-            text-decoration: underline;
-        }
+.section-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 1rem;
+}
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.8rem;
+  color: var(--navy);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 1rem;
+  max-width: 520px;
+}
 
-            .hero p {
-                font-size: 1.1rem;
-            }
+.section-sub {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 4rem;
+}
 
-            .section-title {
-                font-size: 1.8rem;
-            }
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
 
-            .header-content {
-                padding: 1rem 1.5rem;
-            }
+.benefit-item {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+  position: relative;
+}
 
-            .logo {
-                font-size: 1.5rem;
-            }
+.benefit-item:hover { background: var(--sand); }
+.benefit-item:nth-child(3n) { border-right: none; }
+.benefit-item:nth-child(4), .benefit-item:nth-child(5), .benefit-item:nth-child(6) { border-bottom: none; }
 
-            .waitlist-section {
-                padding: 1.5rem;
-            }
+.benefit-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.5rem;
+  color: var(--sand-dark);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
 
-            .hero {
-                padding: 3rem 1.5rem;
-            }
-        }
+.benefit-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.6rem;
+}
 
-        .asterisk {
-            color: var(--accent);
-            font-weight: 700;
-        }
+.benefit-text {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
 
-        .form-note {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin-top: 0.3rem;
-        }
+/* ABOUT */
+.about {
+  background: var(--navy);
+  padding: 6rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
 
-        .success-message {
-            background: #d4f5e8;
-            border: 1px solid var(--accent);
-            color: #0d7c66;
-            padding: 1rem;
-            border-radius: 6px;
-            margin-top: 1rem;
-            display: none;
-        }
+.about-left .section-eyebrow { color: var(--teal-light); }
 
-        .success-message.show {
-            display: block;
-        }
-    </style>
+.about-left .section-title { color: var(--white); max-width: none; }
+
+.about-text {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.about-right {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 2.5rem;
+}
+
+.about-card-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 1.5rem;
+}
+
+.about-metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.about-metric:last-child { border-bottom: none; }
+
+.am-label {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.55);
+}
+
+.am-val {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem;
+  color: var(--teal-light);
+}
+
+/* FOOTER */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.4);
+  padding: 2rem 6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.83rem;
+}
+
+footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+footer a:hover { color: var(--teal-light); }
+
+.footer-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.7);
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+
+  .hero-left {
+    padding: 4rem 1.75rem;
+  }
+
+  .hero-h1 { font-size: 2.4rem; }
+
+  .hero-right { padding: 2.5rem 1.75rem; }
+
+  .benefits { padding: 4rem 1.75rem; }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benefit-item:nth-child(3n) { border-right: none; }
+  .benefit-item { border-right: none !important; }
+  .benefit-item:last-child { border-bottom: none; }
+  .benefit-item:nth-child(4), .benefit-item:nth-child(5) { border-bottom: 1px solid var(--border); }
+
+  .about {
+    grid-template-columns: 1fr;
+    padding: 4rem 1.75rem;
+    gap: 3rem;
+  }
+
+  .section-title { font-size: 2.2rem; }
+
+  footer { padding: 1.5rem 1.75rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+
+  .form-row { grid-template-columns: 1fr; }
+
+  .hero-stats { gap: 1.5rem; }
+}
+</style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <div class="logo">Numé<span class="logo-accent">rio</span></div>
-            <nav>
-                <a href="#beneficios">Benefícios</a>
-                <a href="#sobre">Sobre</a>
-            </nav>
+
+<nav id="navbar">
+  <div class="nav-logo">Numé<span>rio</span></div>
+  <div class="nav-links">
+    <a href="#beneficios">Benefícios</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#waitlist" class="nav-cta">Entrar na lista</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">
+      <div class="hero-dot"></div>
+      Em breve
+    </div>
+    <h1 class="hero-h1">Finanças que fazem <em>sentido</em> pro seu restaurante</h1>
+    <p class="hero-sub">Pare de adivinhar se seu negócio lucra. Com Numério, você entende seus números em minutos — sem precisar de contador.</p>
+
+    <div class="hero-stats">
+      <div>
+        <span class="stat-val">5min</span>
+        <span class="stat-label">para seu primeiro DRE</span>
+      </div>
+      <div>
+        <span class="stat-val">0</span>
+        <span class="stat-label">jargões financeiros</span>
+      </div>
+      <div>
+        <span class="stat-val">100%</span>
+        <span class="stat-label">feito para food service</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right" id="waitlist">
+    <div class="form-card">
+      <div class="form-card-title">Entre na lista de espera</div>
+      <div class="form-card-sub">Seja um dos primeiros a usar e garanta desconto especial de fundador.</div>
+
+      <form id="mc-form" method="post" action="https://numerio.us8.list-manage.com/subscribe/post?u=6791be3222df3ef90fd8a404f&id=acd37e77fe&f_id=0028c4e1f0" target="_blank">
+
+        <div class="field">
+          <label for="mce-EMAIL">E-mail <span class="req">*</span></label>
+          <input type="email" name="EMAIL" id="mce-EMAIL" required placeholder="voce@email.com">
         </div>
-    </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Entenda os números do seu restaurante</h1>
-            <p>Sem jargão financeiro, sem complicações. Só clareza e lucro.</p>
-            <button class="cta-primary" onclick="document.querySelector('.waitlist-section').scrollIntoView()">Entrar na lista de espera</button>
+        <div class="form-row">
+          <div class="field">
+            <label for="mce-FNAME">Nome</label>
+            <input type="text" name="FNAME" id="mce-FNAME" placeholder="Seu nome">
+          </div>
+          <div class="field">
+            <label for="mce-PHONE">Telefone</label>
+            <input type="text" name="PHONE" id="mce-PHONE" placeholder="(47) 9XXXX-XXXX">
+          </div>
         </div>
-    </section>
 
-    <section class="section" id="beneficios">
-        <h2 class="section-title">Por que Numério?</h2>
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">📊</div>
-                <h3>Veja seu lucro real</h3>
-                <p>Sem mais surpresas no final do mês. Saiba exatamente quanto você está ganhando.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🎯</div>
-                <h3>Decisões com dados</h3>
-                <p>Levante preço? Aumente custo? Contrate? Decisões baseadas em números reais.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">⚡</div>
-                <h3>Simples e rápido</h3>
-                <p>Desenvolvido para quem não tem contador. Interface intuitiva, sem complicações.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🔒</div>
-                <h3>Dados seguros</h3>
-                <p>Seus números ficam protegidos. Você controla quem acessa.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">📈</div>
-                <h3>Acompanhamento mensal</h3>
-                <p>Evolua mês a mês. Veja tendências, identifique oportunidades.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">💡</div>
-                <h3>Aprenda enquanto usa</h3>
-                <p>Receba insights e dicas sobre como melhorar a saúde financeira do seu negócio.</p>
-            </div>
+        <div class="field">
+          <label for="mce-COMPANY">Nome do seu negócio</label>
+          <input type="text" name="COMPANY" id="mce-COMPANY" placeholder="Restaurante ou empresa">
         </div>
-    </section>
 
-    <section class="section">
-        <div class="waitlist-section">
-            <h3 class="waitlist-title">Aí vem Numério</h3>
-            <p class="waitlist-desc">Estamos preparando a primeira versão. Entre na lista de espera para ser um dos primeiros a usar e receber desconto de fundador.</p>
-            
-            <form id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" method="post" action="https://numerio.us8.list-manage.com/subscribe/post?u=6791be3222df3ef90fd8a404f&id=acd37e77fe&f_id=0028c4e1f0" target="_blank">
-                <div class="form-columns">
-                    <div class="form-group">
-                        <label for="mce-EMAIL">E-mail <span class="asterisk">*</span></label>
-                        <input type="email" name="EMAIL" id="mce-EMAIL" required placeholder="seu@email.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="mce-FNAME">Nome</label>
-                        <input type="text" name="FNAME" id="mce-FNAME" placeholder="Seu nome">
-                    </div>
-                </div>
-
-                <div class="form-columns">
-                    <div class="form-group">
-                        <label for="mce-PHONE">Telefone</label>
-                        <input type="text" name="PHONE" id="mce-PHONE" placeholder="(XX) 9XXXX-XXXX">
-                        <div class="form-note">Opcional - para contato direto</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="mce-COMPANY">Seu Restaurante</label>
-                        <input type="text" name="COMPANY" id="mce-COMPANY" placeholder="Nome do negócio">
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn">Entrar na lista de espera</button>
-                <div class="success-message" id="success-msg">
-                    ✓ Sucesso! Verifique seu e-mail para confirmar a inscrição.
-                </div>
-            </form>
+        <!-- Mailchimp anti-bot -->
+        <div style="position:absolute;left:-5000px;" aria-hidden="true">
+          <input type="text" name="b_6791be3222df3ef90fd8a404f_acd37e77fe" tabindex="-1" value="">
         </div>
-    </section>
 
-    <section class="about-section" id="sobre">
-        <div class="about-content">
-            <h2>Quem está por trás disso</h2>
-            <p>Sou Raphael, gerente de finanças de uma grande distribuição de alimentos. Nos últimos 8 anos, vi centenas de donos de restaurantes perderem dinheiro não porque eram ruins em negócios, mas porque não compreendiam seus números.</p>
-            <p>Resolvi criar Numério para mudar isso. Uma ferramenta descomplicada, acessível e que realmente funciona para quem trabalha na cozinha, não no escritório contábil.</p>
-            <div class="founder-info">
-                <strong>Numério</strong> é desenvolvida com foco em um objetivo: fazer você lucrar mais entendendo melhor seu negócio.
-            </div>
-        </div>
-    </section>
+        <button type="submit" class="btn-submit">Quero entrar na lista →</button>
+        <div class="success-toast" id="toast">✓ Inscrição enviada! Verifique seu e-mail para confirmar.</div>
+        <p class="form-note">Sem spam. Você pode cancelar a qualquer momento.</p>
+      </form>
+    </div>
+  </div>
+</section>
 
-    <footer>
-        <p>&copy; 2025 Numério. Todos os direitos reservados. | <a href="mailto:raphael@numerio.com.br">Contato</a></p>
-    </footer>
+<!-- BENEFITS -->
+<section class="benefits" id="beneficios">
+  <div class="section-eyebrow">Por que Numério</div>
+  <h2 class="section-title">Tudo que você precisa para parar de operar no escuro</h2>
+  <p class="section-sub">Desenvolvido por quem entende finanças de food service de verdade — não por quem nunca entrou em uma cozinha.</p>
 
-    <script>
-        document.getElementById('mc-embedded-subscribe-form').addEventListener('submit', function(e) {
-            setTimeout(function() {
-                const successMsg = document.getElementById('success-msg');
-                if (successMsg) {
-                    successMsg.classList.add('show');
-                    setTimeout(function() {
-                        successMsg.classList.remove('show');
-                    }, 4000);
-                }
-            }, 500);
-        });
-    </script>
+  <div class="benefits-grid">
+    <div class="benefit-item">
+      <div class="benefit-num">01</div>
+      <div class="benefit-title">DRE automático</div>
+      <p class="benefit-text">Lance receitas e despesas uma vez. Seu resultado financeiro aparece automaticamente, sem fórmulas complicadas.</p>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-num">02</div>
+      <div class="benefit-title">CMV sob controle</div>
+      <p class="benefit-text">Calcule seu custo de mercadoria vendida em tempo real. Saiba exatamente qual prato te dá lucro e qual te prejudica.</p>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-num">03</div>
+      <div class="benefit-title">Fluxo de caixa claro</div>
+      <p class="benefit-text">Veja entradas e saídas projetadas. Nunca mais ser pego de surpresa com contas a pagar sem dinheiro no caixa.</p>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-num">04</div>
+      <div class="benefit-title">Precificação inteligente</div>
+      <p class="benefit-text">Descubra o preço mínimo de cada prato para não vender no prejuízo. Simples, direto e baseado nos seus custos reais.</p>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-num">05</div>
+      <div class="benefit-title">Relatórios em segundos</div>
+      <p class="benefit-text">Tire um relatório gerencial em PDF para mostrar para sócios, banco ou contador. Sem precisar contratar ninguém.</p>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-num">06</div>
+      <div class="benefit-title">Linguagem humana</div>
+      <p class="benefit-text">Sem jargões contábeis. Cada número vem com uma explicação em português claro para você tomar a decisão certa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="sobre">
+  <div class="about-left">
+    <div class="section-eyebrow">Quem está por trás</div>
+    <h2 class="section-title">Criado por quem vive finanças de food service todo dia</h2>
+    <p class="about-text">Sou Raphael, gerente de finanças de uma das maiores distribuidoras de alimentos do Brasil. Nos últimos anos, vi de perto como donos de restaurante perdem dinheiro não por falta de talento, mas por falta de visibilidade financeira.</p>
+    <p class="about-text">Numério nasceu dessa observação: uma ferramenta honesta, acessível e feita especificamente para quem trabalha com comida — não para quem trabalha em escritório contábil.</p>
+  </div>
+
+  <div class="about-right">
+    <div class="about-card-label">O que Numério resolve</div>
+    <div class="about-metric">
+      <span class="am-label">Entender se está lucrando</span>
+      <span class="am-val">DRE simples</span>
+    </div>
+    <div class="about-metric">
+      <span class="am-label">Controlar custo de ingredientes</span>
+      <span class="am-val">CMV automático</span>
+    </div>
+    <div class="about-metric">
+      <span class="am-label">Saber o preço certo dos pratos</span>
+      <span class="am-val">Precificação</span>
+    </div>
+    <div class="about-metric">
+      <span class="am-label">Prever o caixa do próximo mês</span>
+      <span class="am-val">Fluxo projetado</span>
+    </div>
+    <div class="about-metric">
+      <span class="am-label">Apresentar resultado para sócios</span>
+      <span class="am-val">Relatório PDF</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Numério</div>
+  <div>© 2025 Numério. Todos os direitos reservados.</div>
+  <div><a href="mailto:raphael@numerio.com.br">raphael@numerio.com.br</a></div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  document.getElementById('mc-form').addEventListener('submit', () => {
+    setTimeout(() => {
+      document.getElementById('toast').classList.add('show');
+    }, 600);
+  });
+</script>
 </body>
 </html>
