@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numério — Finanças Descomplicadas para Restaurantes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a3a52;
+            --primary-light: #2d5a7b;
+            --accent: #0d7c66;
+            --accent-light: #4da397;
+            --bg: #f9f9f9;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --border: #e5e5e5;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+            background: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-accent {
+            color: var(--accent);
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .hero {
+            margin-top: 60px;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .cta-primary {
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .cta-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(13, 124, 102, 0.3);
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .benefit-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(13, 124, 102, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .benefit-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .waitlist-section {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+
+        .waitlist-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .waitlist-desc {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.85rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(13, 124, 102, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+        .form-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            background: var(--accent);
+            color: white;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(13, 124, 102, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .about-section {
+            background: var(--primary);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .about-section p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+
+        .founder-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 3px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin-top: 2rem;
+        }
+
+        .founder-info strong {
+            color: var(--accent);
+        }
+
+        footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .header-content {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .waitlist-section {
+                padding: 1.5rem;
+            }
+
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        .asterisk {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .form-note {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 0.3rem;
+        }
+
+        .success-message {
+            background: #d4f5e8;
+            border: 1px solid var(--accent);
+            color: #0d7c66;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">Numé<span class="logo-accent">rio</span></div>
+            <nav>
+                <a href="#beneficios">Benefícios</a>
+                <a href="#sobre">Sobre</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Entenda os números do seu restaurante</h1>
+            <p>Sem jargão financeiro, sem complicações. Só clareza e lucro.</p>
+            <button class="cta-primary" onclick="document.querySelector('.waitlist-section').scrollIntoView()">Entrar na lista de espera</button>
+        </div>
+    </section>
+
+    <section class="section" id="beneficios">
+        <h2 class="section-title">Por que Numério?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">📊</div>
+                <h3>Veja seu lucro real</h3>
+                <p>Sem mais surpresas no final do mês. Saiba exatamente quanto você está ganhando.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🎯</div>
+                <h3>Decisões com dados</h3>
+                <p>Levante preço? Aumente custo? Contrate? Decisões baseadas em números reais.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>Simples e rápido</h3>
+                <p>Desenvolvido para quem não tem contador. Interface intuitiva, sem complicações.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🔒</div>
+                <h3>Dados seguros</h3>
+                <p>Seus números ficam protegidos. Você controla quem acessa.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📈</div>
+                <h3>Acompanhamento mensal</h3>
+                <p>Evolua mês a mês. Veja tendências, identifique oportunidades.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💡</div>
+                <h3>Aprenda enquanto usa</h3>
+                <p>Receba insights e dicas sobre como melhorar a saúde financeira do seu negócio.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="waitlist-section">
+            <h3 class="waitlist-title">Aí vem Numério</h3>
+            <p class="waitlist-desc">Estamos preparando a primeira versão. Entre na lista de espera para ser um dos primeiros a usar e receber desconto de fundador.</p>
+            
+            <form id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" method="post" action="https://numerio.us8.list-manage.com/subscribe/post?u=6791be3222df3ef90fd8a404f&id=acd37e77fe&f_id=0028c4e1f0" target="_blank">
+                <div class="form-columns">
+                    <div class="form-group">
+                        <label for="mce-EMAIL">E-mail <span class="asterisk">*</span></label>
+                        <input type="email" name="EMAIL" id="mce-EMAIL" required placeholder="seu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="mce-FNAME">Nome</label>
+                        <input type="text" name="FNAME" id="mce-FNAME" placeholder="Seu nome">
+                    </div>
+                </div>
+
+                <div class="form-columns">
+                    <div class="form-group">
+                        <label for="mce-PHONE">Telefone</label>
+                        <input type="text" name="PHONE" id="mce-PHONE" placeholder="(XX) 9XXXX-XXXX">
+                        <div class="form-note">Opcional - para contato direto</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mce-COMPANY">Seu Restaurante</label>
+                        <input type="text" name="COMPANY" id="mce-COMPANY" placeholder="Nome do negócio">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Entrar na lista de espera</button>
+                <div class="success-message" id="success-msg">
+                    ✓ Sucesso! Verifique seu e-mail para confirmar a inscrição.
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="about-section" id="sobre">
+        <div class="about-content">
+            <h2>Quem está por trás disso</h2>
+            <p>Sou Raphael, gerente de finanças de uma grande distribuição de alimentos. Nos últimos 8 anos, vi centenas de donos de restaurantes perderem dinheiro não porque eram ruins em negócios, mas porque não compreendiam seus números.</p>
+            <p>Resolvi criar Numério para mudar isso. Uma ferramenta descomplicada, acessível e que realmente funciona para quem trabalha na cozinha, não no escritório contábil.</p>
+            <div class="founder-info">
+                <strong>Numério</strong> é desenvolvida com foco em um objetivo: fazer você lucrar mais entendendo melhor seu negócio.
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Numério. Todos os direitos reservados. | <a href="mailto:raphael@numerio.com.br">Contato</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('mc-embedded-subscribe-form').addEventListener('submit', function(e) {
+            setTimeout(function() {
+                const successMsg = document.getElementById('success-msg');
+                if (successMsg) {
+                    successMsg.classList.add('show');
+                    setTimeout(function() {
+                        successMsg.classList.remove('show');
+                    }, 4000);
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>
