@@ -5,29 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Numério — Financeiro que você finalmente entende</title>
 
+  <!-- FAVICON -->
 <link rel="icon" type="image/png" href="favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ── SPLASH SCREEN ── */
 .splash-screen{
   position:fixed;inset:0;
-  background:var(--bg);
+  background:#0a0a0a;
   display:flex;align-items:center;justify-content:center;
-  z-index:9999;opacity:1;
-  transition:opacity .5s ease,.visibility .5s ease;
+  z-index:9999;
+  opacity:1;
   visibility:visible;
+  transition:opacity .6s ease;
 }
 .splash-screen.hidden{
-  opacity:0;visibility:hidden;
+  opacity:0;
+  visibility:hidden;
   pointer-events:none;
 }
 .splash-content{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:1.5rem;
 }
 .splash-video{
-  width:220px;height:auto;
-  filter:drop-shadow(0 20px 40px rgba(0,200,150,0.15));
+  width:min(400px, 60vw);
+  height:auto;
+  filter:drop-shadow(0 20px 60px rgba(0,200,150,0.2));
 }
 </style>
 <style>
@@ -876,11 +879,14 @@ footer a:hover{color:var(--teal)}
 gsap.registerPlugin(ScrollTrigger, SplitText, Observer);
 
 // ── SPLASH SCREEN
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('splash').classList.add('hidden');
-  }, 3000); // mostra por 3 segundos
-});
+(function() {
+  var splash = document.getElementById('splash');
+  function hideSplash() {
+    splash.classList.add('hidden');
+    setTimeout(function() { splash.style.display = 'none'; }, 700);
+  }
+  setTimeout(hideSplash, 3000);
+})();
 
 // ── NAV SCROLL
 window.addEventListener('scroll', () => {
