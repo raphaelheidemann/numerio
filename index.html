@@ -477,7 +477,37 @@ footer a:hover{color:var(--teal)}
 </style>
 </head>
 <body>
+<div id="splash" class="splash-screen">
+  <video autoplay muted playsinline style="width:200px;height:auto;">
+    <source src="splash.mp4" type="video/mp4">
+  </video>
+</div>
 
+<style>
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity .4s ease;
+}
+.splash-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+</style>
+
+<script>
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('splash').classList.add('hidden');
+  }, 2500); // mostra por 2.5 segundos
+});
+  
 <!-- NAV -->
 <nav id="nav">
   <a class="nav-logo" href="#">Numé<span>rio</span></a>
