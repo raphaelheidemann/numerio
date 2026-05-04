@@ -4,33 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Numério — Financeiro que você finalmente entende</title>
-
-  <!-- FAVICON -->
-<link rel="icon" type="image/png" href="favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ── SPLASH SCREEN ── */
 .splash-screen{
-  position:fixed;inset:0;
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
   background:#0a0a0a;
-  display:flex;align-items:center;justify-content:center;
-  z-index:9999;
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+  z-index:99999;
   opacity:1;
-  visibility:visible;
-  transition:opacity .6s ease;
+  transition:opacity .5s ease;
 }
 .splash-screen.hidden{
   opacity:0;
-  visibility:hidden;
   pointer-events:none;
-}
-.splash-content{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-}
-.splash-video{
-  width:min(400px, 60vw);
-  height:auto;
-  filter:drop-shadow(0 20px 60px rgba(0,200,150,0.2));
+  z-index:-1;
 }
 </style>
 <style>
@@ -503,12 +494,10 @@ footer a:hover{color:var(--teal)}
 <body>
 
 <!-- SPLASH SCREEN -->
-<div id="splash" class="splash-screen">
-  <div class="splash-content">
-    <video class="splash-video" autoplay muted playsinline>
-      <source src="logo.mp4" type="video/mp4">
-    </video>
-  </div>
+<div id="splash" class="splash-screen" style="display:flex;">
+  <video class="splash-video" autoplay muted playsinline style="width:400px;height:auto;">
+    <source src="logo.mp4" type="video/mp4">
+  </video>
 </div>
 
 <!-- NAV -->
@@ -878,14 +867,18 @@ footer a:hover{color:var(--teal)}
 <script>
 gsap.registerPlugin(ScrollTrigger, SplitText, Observer);
 
-// ── SPLASH SCREEN
+// ── SPLASH SCREEN (Imediato)
 (function() {
-  var splash = document.getElementById('splash');
-  function hideSplash() {
-    splash.classList.add('hidden');
-    setTimeout(function() { splash.style.display = 'none'; }, 700);
-  }
-  setTimeout(hideSplash, 3000);
+  setTimeout(function() {
+    var splash = document.getElementById('splash');
+    if (splash) {
+      splash.style.opacity = '0';
+      splash.style.pointerEvents = 'none';
+      splash.style.zIndex = '-1';
+      console.log('✓ Splash removido');
+    }
+  }, 3500);
+  console.log('✓ Timer splash iniciado');
 })();
 
 // ── NAV SCROLL
