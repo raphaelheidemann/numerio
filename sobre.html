@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre — Numério</title>
+<meta name="description" content="Conheça Raphael, gerente de finanças com 8+ anos em FP&A e Controladoria, criador do Numério.">
+
+<!-- FAVICON -->
+<link rel="icon" type="image/png" href="favicon.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;--bg2:#111111;--bg3:#161616;
+  --surface:#1a1a1a;--surface2:#222222;
+  --teal:#00c896;--teal2:#00a87e;
+  --teal-dim:rgba(0,200,150,0.12);--teal-border:rgba(0,200,150,0.2);
+  --white:#ffffff;--muted:#6b6b6b;--muted2:#444444;
+  --border:#1f1f1f;--border2:#2a2a2a;--text:#e8e8e8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--muted2);border-radius:2px}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;height:64px;
+  background:rgba(10,10,10,0.95);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(20px);
+}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.5rem;color:var(--white);text-decoration:none;letter-spacing:-.3px}
+.nav-logo span{color:var(--teal)}
+.nav-links{display:flex;align-items:center;gap:2.5rem}
+.nav-links a{font-size:.82rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:.04em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-cta{background:var(--teal)!important;color:#000!important;padding:.5rem 1.2rem;border-radius:4px;font-weight:600!important;text-transform:none!important;letter-spacing:0!important;font-size:.85rem!important}
+
+/* HERO SOBRE */
+.sobre-hero{
+  margin-top:64px;
+  padding:6rem 5vw 4rem;
+  background:var(--bg2);
+  border-bottom:1px solid var(--border);
+}
+.sobre-hero-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;
+}
+.eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:1.25rem;display:flex;align-items:center;gap:.6rem}
+.eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--teal)}
+.hero-h{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,5vw,4rem);color:var(--white);line-height:1.05;letter-spacing:-2px;margin-bottom:1.5rem}
+.hero-h em{font-style:italic;color:var(--teal)}
+.hero-sub{font-size:1rem;color:var(--muted);line-height:1.8;font-weight:300}
+
+/* FOTO */
+.photo-wrap{position:relative}
+.photo-frame{
+  width:100%;aspect-ratio:4/5;
+  border-radius:8px;overflow:hidden;
+  border:1px solid var(--border2);
+  background:var(--surface);
+  position:relative;
+}
+.photo-frame img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center top;
+  filter:grayscale(20%);
+  transition:filter .3s;
+}
+.photo-frame:hover img{filter:grayscale(0%)}
+.photo-badge{
+  position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;
+  background:rgba(10,10,10,0.85);
+  border:1px solid var(--border2);
+  border-radius:6px;padding:1rem 1.25rem;
+  backdrop-filter:blur(12px);
+}
+.photo-badge-name{font-family:'Instrument Serif',serif;font-size:1.1rem;color:var(--white);margin-bottom:.25rem}
+.photo-badge-role{font-size:.78rem;color:var(--muted)}
+
+/* SECTIONS */
+section{padding:5rem 5vw}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-h{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3vw,2.5rem);color:var(--white);line-height:1.15;letter-spacing:-.5px;margin-bottom:1.5rem}
+.section-h em{font-style:italic;color:var(--teal)}
+
+/* STORY */
+.story-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start}
+.story-text p{font-size:.95rem;color:var(--muted);line-height:1.85;margin-bottom:1.5rem}
+.story-text p strong{color:var(--text);font-weight:500}
+.story-text p:last-child{margin-bottom:0}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:0}
+.tl-item{
+  display:flex;gap:1.5rem;
+  padding:1.5rem 0;
+  border-bottom:1px solid var(--border);
+}
+.tl-item:last-child{border-bottom:none}
+.tl-year{
+  font-family:'Instrument Serif',serif;
+  font-size:1.1rem;color:var(--teal);
+  min-width:60px;line-height:1.4;
+  flex-shrink:0;
+}
+.tl-content h4{font-size:.9rem;font-weight:600;color:var(--white);margin-bottom:.3rem}
+.tl-content p{font-size:.82rem;color:var(--muted);line-height:1.6}
+
+/* CREDENTIALS */
+.cred-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:4rem}
+.cred{background:var(--bg2);padding:2rem 1.75rem;transition:background .2s}
+.cred:hover{background:var(--bg3)}
+.cred-val{font-family:'Instrument Serif',serif;font-size:2.5rem;color:var(--teal);line-height:1;margin-bottom:.5rem;letter-spacing:-1px}
+.cred-label{font-size:.82rem;color:var(--muted);line-height:1.5}
+
+/* CASES */
+.cases-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.case-card{
+  background:var(--bg);border:1px solid var(--border2);
+  border-radius:8px;padding:2rem;
+  transition:border-color .3s;
+}
+.case-card:hover{border-color:var(--teal-border)}
+.case-icon{font-size:1.75rem;margin-bottom:1.25rem}
+.case-biz{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:.75rem}
+.case-quote{
+  font-family:'Instrument Serif',serif;font-style:italic;
+  font-size:1rem;color:var(--white);line-height:1.55;
+  margin-bottom:1.25rem;
+}
+.case-result{
+  background:var(--teal-dim);border:1px solid var(--teal-border);
+  border-radius:4px;padding:.6rem .9rem;
+  font-size:.78rem;color:var(--teal);font-weight:500;
+  display:flex;align-items:center;gap:.4rem;
+}
+.case-result::before{content:'→'}
+.case-author{font-size:.78rem;color:var(--muted);margin-top:1rem}
+
+/* MISSÃO */
+.mission{
+  background:var(--teal);
+  padding:5rem 5vw;text-align:center;
+}
+.mission-h{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(1.8rem,4vw,3rem);color:#000;line-height:1.2;letter-spacing:-.5px;max-width:700px;margin:0 auto 2rem}
+.mission-sub{font-size:.95rem;color:rgba(0,0,0,0.65);max-width:480px;margin:0 auto 2.5rem;line-height:1.7}
+.btn-dark{display:inline-flex;align-items:center;gap:.5rem;background:#000;color:var(--teal);padding:.85rem 2rem;border-radius:4px;font-weight:700;font-size:.9rem;text-decoration:none;transition:opacity .2s}
+.btn-dark:hover{opacity:.85}
+
+/* FOOTER */
+footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:'Instrument Serif',serif;font-size:1.3rem;color:var(--white)}
+.footer-logo span{color:var(--teal)}
+footer p{font-size:.78rem;color:var(--muted)}
+.footer-links{display:flex;gap:2rem}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:.78rem;transition:color .2s}
+.footer-links a:hover{color:var(--teal)}
+
+@media(max-width:900px){
+  nav{padding:0 1.25rem}
+  .nav-links a:not(.nav-cta){display:none}
+  .sobre-hero-inner,.story-grid{grid-template-columns:1fr;gap:3rem}
+  .sobre-hero{padding:4rem 1.25rem 3rem}
+  section{padding:4rem 1.25rem}
+  .cred-grid{grid-template-columns:1fr 1fr}
+  .cases-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;text-align:center}
+  .footer-links{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Numé<span>rio</span></a>
+  <div class="nav-links">
+    <a href="sobre.html" class="active">Sobre</a>
+    <a href="index.html#problema">Problema</a>
+    <a href="index.html#entregavel">Entregável</a>
+    <a href="index.html#waitlist" class="nav-cta">Entrar na lista</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="sobre-hero">
+  <div class="sobre-hero-inner">
+    <div>
+      <div class="eyebrow">Quem está por trás</div>
+      <h1 class="hero-h">Financeiro que <em>viveu</em> na prática</h1>
+      <p class="hero-sub">8 anos analisando DRE, gerindo fluxo de caixa e apresentando resultado para diretoria de uma das maiores distribuidoras de food service do Brasil. Agora, levando esse conhecimento para quem mais precisa: o dono de negócio que toca tudo sozinho.</p>
+    </div>
+    <div class="photo-wrap">
+      <div class="photo-frame">
+        <img src="profile.jpg" alt="Raphael — Fundador do Numério" loading="lazy">
+        <div class="photo-badge">
+          <div class="photo-badge-name">Raphael</div>
+          <div class="photo-badge-role">Gerente de Finanças · Fundador do Numério</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section>
+  <div class="section-inner">
+    <div class="story-grid">
+      <div>
+        <div class="eyebrow">Minha história</div>
+        <h2 class="section-h">Do corporativo ao <em>propósito</em></h2>
+      </div>
+      <div class="story-text">
+        <p>Comecei minha carreira em controladoria e fui crescendo dentro do mundo financeiro corporativo. Hoje sou Gerente de FP&A em uma grande distribuidora de alimentos — responsável por analisar resultado, projetar cenários e transformar números em decisões estratégicas.</p>
+        <p>Mas ao longo desse caminho, fui percebendo algo que me incomodava profundamente: <strong>donos de pequenos negócios tomam as mesmas decisões que grandes empresas — só que sem nenhum dado.</strong></p>
+        <p>Sem DRE. Sem controle de CMV. Sem fluxo de caixa projetado. No feeling. E pagam caro por isso — com negócios que faturam mas não lucram, com caixas que sempre surpreendem negativamente, com decisões de preço que parecem certas mas destroem a margem.</p>
+        <p>Numério nasceu de uma pergunta simples: <strong>e se eu pudesse levar o mesmo rigor financeiro de uma grande corporação para quem toca o negócio sozinho?</strong> Sem jargão contábil. Sem complexidade desnecessária. Só clareza.</p>
+      </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div style="margin-top:4rem">
+      <div class="eyebrow">Trajetória</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">2016</div>
+          <div class="tl-content">
+            <h4>Início em Controladoria</h4>
+            <p>Primeiros anos analisando custos, margens e resultado em empresas do setor alimentício. Aprendi a ler e construir DRE do zero.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2018</div>
+          <div class="tl-content">
+            <h4>FP&A e Planejamento Estratégico</h4>
+            <p>Comecei a trabalhar com projeções financeiras, cenários e análise de portfólio. Aprendi como grandes empresas tomam decisões com dados.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2021</div>
+          <div class="tl-content">
+            <h4>Gerência de Finanças — Distribuição de Alimentos</h4>
+            <p>Assumi a gestão financeira de operação com faturamento expressivo. Apresentações mensais de resultado para diretoria e conselho.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2025</div>
+          <div class="tl-content">
+            <h4>Fundação do Numério</h4>
+            <p>Decidi compartilhar o que aprendi. O mesmo conhecimento que as grandes empresas têm — traduzido para a realidade do pequeno negócio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CREDENCIAIS -->
+    <div class="cred-grid">
+      <div class="cred">
+        <div class="cred-val">8+</div>
+        <div class="cred-label">anos em FP&A e<br>Controladoria corporativa</div>
+      </div>
+      <div class="cred">
+        <div class="cred-val">R$1bi+</div>
+        <div class="cred-label">em receita analisada ao<br>longo da carreira</div>
+      </div>
+      <div class="cred">
+        <div class="cred-val">100%</div>
+        <div class="cred-label">prático — sem teoria que<br>não funciona no mundo real</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="cases-section">
+  <div class="section-inner">
+    <div class="eyebrow">Histórias reais</div>
+    <h2 class="section-h">O problema que eu vejo <em>todo dia</em></h2>
+    <p style="font-size:.95rem;color:var(--muted);max-width:560px;line-height:1.75">Esses são exemplos reais do que acontece quando um dono de negócio não tem clareza financeira. Nomes fictícios, situações verdadeiras.</p>
+
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-icon">🍕</div>
+        <div class="case-biz">Restaurante · São Paulo</div>
+        <p class="case-quote">"Meu salão estava sempre cheio. Faturava R$80k por mês. Mas no final de todo mês eu não conseguia me pagar. Achei que era problema de movimento. Era problema de margem — e eu nem sabia o que era isso."</p>
+        <div class="case-result">CMV estava em 58%. Deveria estar abaixo de 35%.</div>
+        <div class="case-author">— Marcos, dono de restaurante há 6 anos</div>
+      </div>
+      <div class="case-card">
+        <div class="case-icon">💈</div>
+        <div class="case-biz">Salão de Beleza · Blumenau</div>
+        <p class="case-quote">"Abri meu segundo salão achando que estava crescendo. Dois meses depois percebi que o segundo estava consumindo o lucro do primeiro. Não tinha como saber isso sem um DRE."</p>
+        <div class="case-result">Expansão sem análise de break-even gerou R$15k de prejuízo.</div>
+        <div class="case-author">— Patrícia, empresária do setor de beleza</div>
+      </div>
+      <div class="case-card">
+        <div class="case-icon">🏪</div>
+        <div class="case-biz">Mercado · Interior de SC</div>
+        <p class="case-quote">"Eu precificava tudo olhando o concorrente. Um dia um contador amigo meu fez uma análise rápida e mostrou que eu vendia 3 produtos no prejuízo há 2 anos. Dois anos. Sem saber."</p>
+        <div class="case-result">Reajuste de preços em 8 produtos aumentou margem em 12%.</div>
+        <div class="case-author">— Roberto, dono de mercado de bairro</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSÃO -->
+<div class="mission">
+  <h2 class="mission-h">"Todo dono de negócio merece entender seus próprios números."</h2>
+  <p class="mission-sub">Não importa o tamanho da empresa. Clareza financeira não deveria ser privilégio de quem tem CFO.</p>
+  <a href="index.html#waitlist" class="btn-dark">Quero aprender com Raphael →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Numé<span>rio</span></div>
+  <div class="footer-links">
+    <a href="sobre.html">Sobre</a>
+    <a href="privacidade.html">Privacidade</a>
+    <a href="mailto:raphael@numerio.com.br">Contato</a>
+    <a href="https://www.instagram.com/numerio" target="_blank" rel="noopener">Instagram</a>
+  </div>
+  <p>© 2025 Numério. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>
